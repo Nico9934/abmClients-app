@@ -23,7 +23,7 @@ namespace abm_seminario_app
 
 		public DataTable LeerRegistros()
 		{
-			string consulta = "SELECT DNI, firstName as Nombre,lastName as Apellido, adress as Direccion, phone as Telefono  FROM Person";
+			string consulta = "SELECT DNI, firstName as Nombre,lastName as Apellido, adress as Direccion, phone as Telefono, birthday as FechNac FROM Person";
 			DataTable dataTable = new DataTable();
 			SqlConnection Conexion;
 			SqlCommand Command;
@@ -49,35 +49,6 @@ namespace abm_seminario_app
 			return dataTable;
 
 		}
-
-		//public bool create_register(int dni, string firstName, string lastName, string adress,int phone, DateTime birthday)
-		//{
-		//	string consulta = "INSERT INTO Person (dni, firstName, lastName, adress, phone, birthday)" +
-		//		$"VALUES ({dni}, {firstName}, {lastName}, {adress}, {phone}, {birthday}";
-			
-		//	SqlConnection Conexion;
-		//	SqlCommand Command;
-
-
-		//	try
-		//	{
-		//		Conexion = new SqlConnection(dbConnection.strConexion);
-		//		Command = new SqlCommand(consulta, Conexion);
-
-		//		Conexion.Open();
-				
-
-		//		Conexion.Close();
-				
-		//		return true; 
-		//	}
-		//	catch (Exception ex)
-		//	{
-		//		MessageBox.Show("Error al crear el registro: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-		//		return false;
-		//	}
-
-		//}
 
 
 		public bool create_register(int dni, string firstName, string lastName, string adress, int phone, DateTime birthday)
@@ -107,6 +78,42 @@ namespace abm_seminario_app
 						MessageBox.Show("Error al crear el registro: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 						return false;
 					}
+				}
+			}
+		}
+		
+	
+
+		public bool delete_register(int dni)
+		{
+			string consulta = "DELETE FROM Person WHERE dni = @dni";
+
+			using (SqlConnection conexion = new SqlConnection(dbConnection.strConexion))
+			{
+				using (SqlCommand command = new SqlCommand(consulta, conexion))
+				{
+					command.Parameters.AddWithValue("@dni", dni);
+					DialogResult result = MessageBox.Show("¿Está seguro que desea eliminar este cliente?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+					
+					if (result == DialogResult.Yes)
+					{
+						try
+						{
+							conexion.Open();
+							int rowsAffected = command.ExecuteNonQuery();
+							return rowsAffected > 0; // Retorna true si al menos una fila fue afectada
+						}
+						catch (Exception ex)
+						{
+							MessageBox.Show("Error al eliminar el registro: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+							return false;
+						}
+
+					} else
+					{
+						return false;
+					}
+					
 				}
 			}
 		}

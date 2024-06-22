@@ -195,6 +195,7 @@
 			this.txb_birthday.Name = "txb_birthday";
 			this.txb_birthday.Size = new System.Drawing.Size(247, 30);
 			this.txb_birthday.TabIndex = 12;
+			this.txb_birthday.Text = "YYYY/MM/DD";
 			// 
 			// panel1
 			// 
@@ -276,8 +277,8 @@
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
 			this.Name = "DataEntry";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "DataEntry";
-			this.Load += new System.EventHandler(this.DataEntry_Load);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

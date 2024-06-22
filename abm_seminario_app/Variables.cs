@@ -9,6 +9,7 @@ namespace abm_seminario_app
 	internal class Variables
 	{
 
+		public static Person selectedClient = new Person();
 
 
 	}
