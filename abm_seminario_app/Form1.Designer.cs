@@ -28,13 +28,13 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.dgv_data = new System.Windows.Forms.DataGridView();
 			this.btn_newUser = new System.Windows.Forms.Button();
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.btn_deleteUser = new System.Windows.Forms.Button();
 			this.btn_updateUser = new System.Windows.Forms.Button();
+			this.btn_deleteUser = new System.Windows.Forms.Button();
 			this.label1 = new System.Windows.Forms.Label();
 			this.header_panel = new System.Windows.Forms.Panel();
 			this.label2 = new System.Windows.Forms.Label();
@@ -51,24 +51,24 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.dgv_data.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.dgv_data.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-			dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-			dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
-			dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(109)))), ((int)(((byte)(255)))));
-			dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
-			dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(109)))), ((int)(((byte)(255)))));
-			dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.dgv_data.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+			dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
+			dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(109)))), ((int)(((byte)(255)))));
+			dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
+			dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(109)))), ((int)(((byte)(255)))));
+			dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dgv_data.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
 			this.dgv_data.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-			dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 12F);
-			dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(109)))), ((int)(((byte)(255)))));
-			dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(109)))), ((int)(((byte)(255)))));
-			dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-			this.dgv_data.DefaultCellStyle = dataGridViewCellStyle4;
+			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+			dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 12F);
+			dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(109)))), ((int)(((byte)(255)))));
+			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(109)))), ((int)(((byte)(255)))));
+			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+			this.dgv_data.DefaultCellStyle = dataGridViewCellStyle2;
 			this.dgv_data.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(40)))), ((int)(((byte)(60)))));
 			this.dgv_data.Location = new System.Drawing.Point(294, 110);
 			this.dgv_data.Name = "dgv_data";
@@ -109,6 +109,19 @@
 			this.panel1.Size = new System.Drawing.Size(296, 555);
 			this.panel1.TabIndex = 3;
 			// 
+			// btn_updateUser
+			// 
+			this.btn_updateUser.BackColor = System.Drawing.Color.CornflowerBlue;
+			this.btn_updateUser.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
+			this.btn_updateUser.ForeColor = System.Drawing.Color.WhiteSmoke;
+			this.btn_updateUser.Location = new System.Drawing.Point(12, 286);
+			this.btn_updateUser.Name = "btn_updateUser";
+			this.btn_updateUser.Size = new System.Drawing.Size(254, 55);
+			this.btn_updateUser.TabIndex = 4;
+			this.btn_updateUser.Text = "Actualizar Cliente";
+			this.btn_updateUser.UseVisualStyleBackColor = false;
+			this.btn_updateUser.Click += new System.EventHandler(this.btn_updateUser_Click);
+			// 
 			// btn_deleteUser
 			// 
 			this.btn_deleteUser.BackColor = System.Drawing.Color.Tomato;
@@ -121,18 +134,6 @@
 			this.btn_deleteUser.Text = "Eliminar Cliente";
 			this.btn_deleteUser.UseVisualStyleBackColor = false;
 			this.btn_deleteUser.Click += new System.EventHandler(this.btn_deleteUser_Click);
-			// 
-			// btn_updateUser
-			// 
-			this.btn_updateUser.BackColor = System.Drawing.Color.CornflowerBlue;
-			this.btn_updateUser.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
-			this.btn_updateUser.ForeColor = System.Drawing.Color.WhiteSmoke;
-			this.btn_updateUser.Location = new System.Drawing.Point(12, 286);
-			this.btn_updateUser.Name = "btn_updateUser";
-			this.btn_updateUser.Size = new System.Drawing.Size(254, 55);
-			this.btn_updateUser.TabIndex = 4;
-			this.btn_updateUser.Text = "Actualizar Cliente";
-			this.btn_updateUser.UseVisualStyleBackColor = false;
 			// 
 			// label1
 			// 

@@ -81,9 +81,6 @@ namespace abm_seminario_app
 				}
 			}
 		}
-		
-	
-
 		public bool delete_register(int dni)
 		{
 			string consulta = "DELETE FROM Person WHERE dni = @dni";
@@ -117,6 +114,35 @@ namespace abm_seminario_app
 				}
 			}
 		}
+		public bool update_register(int dni, string firstName, string lastName, string adress, int phone, DateTime birthday)
+		{
+			string consulta = "UPDATE Person SET firstName = @firstName, lastName = @lastName, adress = @adress, phone = @phone, birthday = @birthday WHERE dni = @dni";
+			using (SqlConnection conexion = new SqlConnection(dbConnection.strConexion))
+			{
+				using (SqlCommand command = new SqlCommand(consulta, conexion))
+				{
+					command.Parameters.AddWithValue("@dni", dni);
+					command.Parameters.AddWithValue("@firstName", firstName);
+					command.Parameters.AddWithValue("@lastName", lastName);
+					command.Parameters.AddWithValue("@adress", adress);
+					command.Parameters.AddWithValue("@phone", phone);
+					command.Parameters.AddWithValue("@birthday", birthday);
+
+					try
+					{
+						conexion.Open();
+						int rowsAffected = command.ExecuteNonQuery();
+						return rowsAffected > 0; // Retorna true si al menos una fila fue afectada
+					}
+					catch (Exception ex)
+					{
+						MessageBox.Show("Error al actualizar el registro: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+						return false;
+					}
+				}
+			}
+		}
+
 	}
 }
 

@@ -279,6 +279,7 @@
 			this.Name = "DataEntry";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "DataEntry";
+			this.Load += new System.EventHandler(this.DataEntry_Load);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

@@ -48,18 +48,17 @@ namespace abm_seminario_app
 
 		private void btn_newUser_Click(object sender, EventArgs e)
 		{
+			Functions.clean_fields();
 			DataEntry formData = new DataEntry();
 			formData.RecordCreated += new DataEntry.RecordCreatedEventHandler(this.OnRecordCreated);
 			formData.ShowDialog();
 		}
-
 		private void btn_deleteUser_Click(object sender, EventArgs e)
 		{
-			System.Media.SystemSounds.Question.Play();
 			try
 			{
 				Queries queries = new Queries();
-				bool response = queries.delete_register(Variables.selectedClient.dni); // Querie al metodo para eliminar, pasando el dni como paremetro. 
+				bool response = queries.delete_register((int)Variables.selectedClient.dni); // Querie al metodo para eliminar, pasando el dni como paremetro. 
 
 				if (response) {
 					MessageBox.Show("Cliente eliminado con éxito", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -73,9 +72,7 @@ namespace abm_seminario_app
 				System.Media.SystemSounds.Hand.Play();
 			}
 		}
-			
 		
-
 		private void row_selectionChanged(object sender, EventArgs e)
 		{
 			if (dgv_data.SelectedRows.Count > 0)
@@ -90,6 +87,13 @@ namespace abm_seminario_app
 				Variables.selectedClient.adress = selectedRow.Cells["Direccion"].Value.ToString();
 				Variables.selectedClient.birthday = DateTime.Parse(birthdayString);
 			}
+		}
+
+		private void btn_updateUser_Click(object sender, EventArgs e)
+		{
+			DataEntry formData = new DataEntry(true); // true indica modo edición
+			formData.RecordCreated += new DataEntry.RecordCreatedEventHandler(this.OnRecordCreated);
+			formData.ShowDialog();
 		}
 	}
 }

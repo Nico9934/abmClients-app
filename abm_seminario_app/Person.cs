@@ -8,11 +8,11 @@ namespace abm_seminario_app
 {
 	internal class Person
 	{
-		public int dni;
+		public int? dni;
 		public string firstName;
 		public string lastName;
 		public string adress;
-		public int phone;
-		public DateTime birthday;
+		public int? phone;
+		public DateTime? birthday;
 	}
 }
