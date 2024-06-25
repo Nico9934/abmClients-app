@@ -24,7 +24,11 @@ namespace abm_seminario_app
 				}
 			return true;
 		}
-
+		public static bool Dni(string dni)
+		{
+			string patron = @"^\d{7,8}$";
+			return Regex.IsMatch(dni, patron);
+		}
 
 		public static bool NameLastName(string nombreApellido)
 		{
@@ -36,21 +40,34 @@ namespace abm_seminario_app
 			string patron = @"^[0-9\s\-\(\)]{7,15}$";
 			return Regex.IsMatch(telefono, patron);
 		}
-		public static bool Dni(string dni)
-		{
-			string patron = @"^\d{7,8}$";
-			return Regex.IsMatch(dni, patron);
-		}
-		public static bool Email(string email)
-		{
-			string patron = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
-			return Regex.IsMatch(email, patron);
-		}
-		public static bool CreditCard(string numeroTarjeta)
-		{
-			string patron = @"^\d{16}$";
-			return Regex.IsMatch(numeroTarjeta, patron);
-		}
 
+		public static bool Birthday(string year, string month, string day)
+		{
+			// Verificar que los parámetros no estén vacíos
+			if (string.IsNullOrEmpty(year) || string.IsNullOrEmpty(month) || string.IsNullOrEmpty(day))
+			{
+				return false;
+			}
+
+			// Verificar que el año tenga 4 dígitos
+			if (year.Length != 4 || !int.TryParse(year, out int yearInt))
+			{
+				return false;
+			}
+
+			// Verificar que el mes sea un número válido y esté entre 1 y 12
+			if (!int.TryParse(month, out int monthInt) || monthInt < 1 || monthInt > 12)
+			{
+				return false;
+			}
+
+			// Verificar que el día sea un número válido y esté entre 1 y 31
+			if (!int.TryParse(day, out int dayInt) || dayInt < 1 || dayInt > 31)
+			{
+				return false;
+			}
+
+			return true;
+		}
 	}
 }

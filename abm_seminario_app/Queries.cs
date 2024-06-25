@@ -19,39 +19,8 @@ namespace abm_seminario_app
 		{
 			dbConnection = new DBConnection();
 		}
-	
 
-		public DataTable LeerRegistros()
-		{
-			string consulta = "SELECT DNI, firstName as Nombre,lastName as Apellido, adress as Direccion, phone as Telefono, birthday as FechNac FROM Person";
-			DataTable dataTable = new DataTable();
-			SqlConnection Conexion;
-			SqlCommand Command;
-			SqlDataReader Reader;
-
-			try
-			{
-				Conexion = new SqlConnection(dbConnection.strConexion);
-				Command = new SqlCommand(consulta, Conexion);
-
-				Conexion.Open();
-				Reader = Command.ExecuteReader();
-
-				dataTable.Load(Reader); 
-
-				Conexion.Close();
-				Reader.Close();
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show("Error al leer registros: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
-			return dataTable;
-
-		}
-
-
-		public bool create_register(int dni, string firstName, string lastName, string adress, int phone, DateTime birthday)
+		public bool create_register(int dni, string firstName, string lastName, string adress, string phone, DateTime birthday)
 		{
 			string consulta = "INSERT INTO Person (dni, firstName, lastName, adress, phone, birthday) " +
 							 "VALUES (@dni, @firstName, @lastName, @adress, @phone, @birthday)";
@@ -73,6 +42,11 @@ namespace abm_seminario_app
 						int rowsAffected = command.ExecuteNonQuery();
 						return rowsAffected > 0; // Retorna true si al menos una fila fue afectada
 					}
+					catch (SqlException ex) when (ex.Number == 2627)
+					{
+						MessageBox.Show("El registro con el DNI ingresado ya existe.", "El cliente ya existe", MessageBoxButtons.OK, MessageBoxIcon.Error);
+						return false;
+					}
 					catch (Exception ex)
 					{
 						MessageBox.Show("Error al crear el registro: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -80,6 +54,34 @@ namespace abm_seminario_app
 					}
 				}
 			}
+		}
+		public DataTable read_registers()
+		{
+			string consulta = "SELECT DNI, firstName as Nombre,lastName as Apellido, adress as Direccion, phone as Telefono, birthday as FechNac FROM Person";
+			DataTable dataTable = new DataTable();
+			SqlConnection Conexion;
+			SqlCommand Command;
+			SqlDataReader Reader;
+
+			try
+			{
+				Conexion = new SqlConnection(dbConnection.strConexion);
+				Command = new SqlCommand(consulta, Conexion);
+
+				Conexion.Open();
+				Reader = Command.ExecuteReader();
+
+				dataTable.Load(Reader);
+
+				Conexion.Close();
+				Reader.Close();
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Error al leer registros: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+			return dataTable;
+
 		}
 		public bool delete_register(int dni)
 		{
@@ -98,7 +100,8 @@ namespace abm_seminario_app
 						{
 							conexion.Open();
 							int rowsAffected = command.ExecuteNonQuery();
-							return rowsAffected > 0; // Retorna true si al menos una fila fue afectada
+							MessageBox.Show("Cliente eliminado con éxito", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+							return rowsAffected > 0;
 						}
 						catch (Exception ex)
 						{
@@ -114,7 +117,7 @@ namespace abm_seminario_app
 				}
 			}
 		}
-		public bool update_register(int dni, string firstName, string lastName, string adress, int phone, DateTime birthday)
+		public bool update_register(int dni, string firstName, string lastName, string adress, string phone, DateTime birthday)
 		{
 			string consulta = "UPDATE Person SET firstName = @firstName, lastName = @lastName, adress = @adress, phone = @phone, birthday = @birthday WHERE dni = @dni";
 			using (SqlConnection conexion = new SqlConnection(dbConnection.strConexion))
@@ -128,21 +131,30 @@ namespace abm_seminario_app
 					command.Parameters.AddWithValue("@phone", phone);
 					command.Parameters.AddWithValue("@birthday", birthday);
 
-					try
+					DialogResult result = MessageBox.Show("¿Está seguro que desea actualizar este cliente?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+					if (result == DialogResult.Yes)
 					{
-						conexion.Open();
-						int rowsAffected = command.ExecuteNonQuery();
-						return rowsAffected > 0; // Retorna true si al menos una fila fue afectada
-					}
-					catch (Exception ex)
+						try
+						{
+							conexion.Open();
+							int rowsAffected = command.ExecuteNonQuery();
+							MessageBox.Show("Cliente actualizado con éxito", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+							return rowsAffected > 0;
+						}
+						catch (Exception ex)
+						{
+							MessageBox.Show("Error al actualizar el registro: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+							return false;
+						}
+
+					} else
 					{
-						MessageBox.Show("Error al actualizar el registro: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 						return false;
 					}
 				}
 			}
 		}
-
 	}
 }
 

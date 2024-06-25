@@ -15,8 +15,6 @@ namespace abm_seminario_app
 		public string strConexion = "Data Source = NOTEBOOK_NICO; Initial Catalog = abm_db; Integrated Security = True;";
 
 		static SqlConnection Conexion;
-		static SqlCommand Orden;
-		static SqlDataReader Lector;
 
 		public void Conectar()
 		{

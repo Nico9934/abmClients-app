@@ -12,7 +12,10 @@ namespace abm_seminario_app
 		public string firstName;
 		public string lastName;
 		public string adress;
-		public int? phone;
+		public string phone;
+		public string year;
+		public string month; 
+		public string day;
 		public DateTime? birthday;
 	}
 }
